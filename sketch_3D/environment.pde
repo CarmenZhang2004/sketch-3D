@@ -16,15 +16,6 @@ void drawMap(){
   }
 }
 
-void drawInterface(){
-  pushMatrix();
-  stroke(255);
-  strokeWeight(5);
-  line(width/2-15, height/2, width/2+15, height/2);
-  line(width/2, height/2-15, width/2, height/2+15);
-  popMatrix();
-}
-
 void drawAxis(){
   stroke(255, 0, 0);
   strokeWeight(3);
