@@ -30,14 +30,22 @@ float leftRightAngle, upDownAngle;
 //Game Objects
 ArrayList<GameObject> objects;
 
+//canvases
+PGraphics world;
+PGraphics HUD;
+
 void setup(){
+  //create canvases
+  world = createGraphics(width, height, P3D);
+  HUD = createGraphics(width, height, P2D);
+  
   //create game object list
   objects = new ArrayList<GameObject>();
   
   //load textures
   mossyStone = loadImage("Mossy_Stone_Bricks.png");
   oakPlanks = loadImage("Oak_Planks.png");
-  textureMode(NORMAL);
+  world.textureMode(NORMAL);
   
   noCursor();
   try{
@@ -50,7 +58,7 @@ void setup(){
   leftRightAngle = 0;
   upDownAngle = 0;
   
-  size(displayWidth, displayHeight, P3D);
+  size(displayWidth, displayHeight, P2D);
   
   eyex = width/2;
   eyey = 9*height/10;
@@ -70,11 +78,11 @@ void setup(){
 }
 
 void draw(){
-  background(0);
-  
-  pointLight(255, 255, 255, eyex, eyey, eyez);
-  
-  camera(eyex, eyey, eyez, focusx, focusy, focusz, upx, upy, upz);
+  world.beginDraw();
+  world.textureMode(NORMAL);
+  world.background(0);
+  world.pointLight(255, 255, 255, eyex, eyey, eyez);
+  world.camera(eyex, eyey, eyez, focusx, focusy, focusz, upx, upy, upz);
   
   move();
   drawAxis();
@@ -94,9 +102,13 @@ void draw(){
     }
   }
   
-  stroke(white);
-  strokeWeight(5);
-  line(width/2-15, height/2, width/2+15, height/2);
-  line(width/2, height/2-15, width/2, height/2+15);
+  world.endDraw();
+  image(world, 0, 0);
   
+  HUD.beginDraw();
+  HUD.clear();
+  drawCrosshair();
+  drawMinimap();
+  HUD.endDraw();
+  image(HUD, 0, 0);
 }
