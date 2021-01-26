@@ -1,25 +1,40 @@
 class Particle extends GameObject {
-  int alpha;
+  PVector vel;
+  PVector gravity;
+  float speed;
   
-  Particle(){
-  loc = new PVector (loc.x+2000, loc.y+2000);
+  Particle(PVector newloc){
+    super();
+    lives = 255;
+    loc = newloc.copy();
+    speed = 50;
+    float vx = random(-5, 5);
+    float vy = random(-5, 0);
+    float vz = random(-5, 5);
+    vel = new PVector(vx, vy, vz);
+    vel.setMag(speed);
+    gravity = new PVector(0, 5, 0);
   }
   
-  Particle(float x, float y){
-    loc = new PVector (x, y);
-    velo = new PVector(1, 0);
-    velo.rotate (random(TWO_PI));
-    lives = 1;
-    size = 2;
-    alpha = 255;
+  void act() {
+    if (loc.y >=height) {
+      loc.y = height;
+    } else if (loc.y <=height-gridSize*3) {
+      loc.y = height-gridSize*3;
+    } else {
+      vel.add(gravity);
+      loc.add(vel);
+    }
   }
   
-  void show(){
-  strokeWeight(3);
-  stroke(255, alpha);
-  fill(0, alpha);
-  rect(loc.x, loc.y, size, size);
-  alpha = alpha - 1;
-  if (alpha <= 0) lives = 0;
+  void show() {
+    pushMatrix();
+    translate(loc.x, loc.y, loc.z);
+    fill(white, lives);
+    stroke(100);
+    box(size);
+    popMatrix();
+    lives--;
   }
+  
 }
