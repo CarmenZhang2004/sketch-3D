@@ -71,6 +71,7 @@ void setup(){
 
 void draw(){
   background(0);
+  
   pointLight(255, 255, 255, eyex, eyey, eyez);
   
   camera(eyex, eyey, eyez, focusx, focusy, focusz, upx, upy, upz);
@@ -79,7 +80,6 @@ void draw(){
   drawAxis();
   drawFloor(-2000, 2000, height, gridSize); //floor
   drawFloor(-2000, 2000, height-gridSize*4, gridSize); //ceiling
-  drawInterface();
   drawMap();
   
   int i = 0;
@@ -93,4 +93,10 @@ void draw(){
       i++;
     }
   }
+  
+  stroke(white);
+  strokeWeight(5);
+  line(width/2-15, height/2, width/2+15, height/2);
+  line(width/2, height/2-15, width/2, height/2+15);
+  
 }
