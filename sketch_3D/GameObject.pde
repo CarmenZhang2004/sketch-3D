@@ -1,7 +1,6 @@
 class GameObject {
   
   PVector loc;
-  PVector velo;
   float size;
   float lives;
   
