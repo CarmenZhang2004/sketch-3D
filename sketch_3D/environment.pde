@@ -17,11 +17,13 @@ void drawMap(){
 }
 
 void drawAxis(){
-  stroke(255, 0, 0);
-  strokeWeight(3);
-  line(0,0,0, 1000,0,0); //x axis
-  line(0,0,0, 0,1000,0); //y axis
-  line(0,0,0, 0,0,1000); //z axis
+  world.stroke(255, 0, 0);
+  world.strokeWeight(5);
+  world.line(0,0,0, 2000,0,0); //x axis
+  world.line(0,0,0, 0,2000,0); //y axis
+  world.line(0,0,0, 0,0,2000); //z axis
+  world.noFill();
+  world.rect(0, 0, width, height);
 }
 
 void drawFloor(int floorStart, int floorEnd, int floorHeight, int floorSpacing){
