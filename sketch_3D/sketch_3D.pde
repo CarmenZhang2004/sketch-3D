@@ -4,6 +4,8 @@ import java.awt.Robot;
 color black = #000000; //oak planks
 color white = #FFFFFF; //empty space
 color dullBlue = #7092BE; //mossy bricks
+color darkblue = #2B4876;
+color lightblue = #9BBCF0;
 
 //textures
 PImage mossyStone;
@@ -23,6 +25,7 @@ float upx, upy, upz; //tilt axis
 
 //keyboard
 boolean wkey, skey, akey, dkey, spacekey;
+boolean pkey;
 
 //rotation variables
 float leftRightAngle, upDownAngle;
@@ -34,7 +37,19 @@ ArrayList<GameObject> objects;
 PGraphics world;
 PGraphics HUD;
 
-void setup(){
+int shadowOffset = 8;
+
+final int INTRO = 1;
+final int GAME = 2;
+final int GAMEOVER = 3;
+final int WIN = 4;
+final int PAUSE = 5;
+int mode = INTRO;
+
+void setup(){ 
+  textAlign(CENTER, CENTER);
+  rectMode(CENTER);
+  
   //create canvases
   world = createGraphics(width, height, P3D);
   HUD = createGraphics(width, height, P2D);
@@ -47,7 +62,6 @@ void setup(){
   oakPlanks = loadImage("Oak_Planks.png");
   world.textureMode(NORMAL);
   
-  noCursor();
   try{
     rbt = new Robot();
   }
@@ -111,4 +125,18 @@ void draw(){
   drawMinimap();
   HUD.endDraw();
   image(HUD, 0, 0);
+  
+  if (mode == INTRO){
+    intro();
+  } else if (mode == GAME){
+    game();
+  } else if (mode == GAMEOVER){
+    gameover();
+  } else if (mode == WIN){
+    win();
+  } else if (mode == PAUSE){
+    pause();
+  } else {
+    println ("Error : Mode = " + mode);
+  }
 }
