@@ -21,14 +21,22 @@ void move(){
   focusy = eyey + tan(upDownAngle)*300;
   focusz = eyez + sin(leftRightAngle)*300;
   
-  leftRightAngle = leftRightAngle + (mouseX - pmouseX)*0.01;
-  upDownAngle = upDownAngle + (mouseY - pmouseY)*0.01;
+  if (frameCount < 2) {
+    rbt.mouseMove(width/2, height/2);
+    mouseX = width/2;
+    mouseY = height/2;
+  }
+  if (mouseX < 1) {
+    rbt.mouseMove(width-2, mouseY);
+  } else if (mouseX > width-2) {
+    rbt.mouseMove(1, mouseY);
+  } 
+  
+  leftRightAngle += (mouseX - pmouseX)*0.01;
+  upDownAngle    += (mouseY - pmouseY)*0.005;
   
   if (upDownAngle > PI/2.5) upDownAngle = PI/2.5;
   if (upDownAngle < -PI/2.5) upDownAngle = -PI/2.5;
-  
-  if (mouseX > width-2) rbt.mouseMove(3, mouseY);
-  if(mouseX < 2) rbt.mouseMove (width-3, mouseY);
 }
 
 boolean canMoveForward(){
