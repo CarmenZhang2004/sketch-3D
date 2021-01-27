@@ -15,6 +15,7 @@ void drawMinimap() {
   HUD.fill(white);
   HUD.text("X : " +miniX, 50, 240);
   HUD.text("Y : " +miniY, 50, 270);
+  //HUD.text(frameRate, 50, 300);
   
   HUD.strokeWeight(1);
   HUD.stroke(255, 0, 0);
