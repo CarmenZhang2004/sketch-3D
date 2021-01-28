@@ -31,7 +31,7 @@ class Particle extends GameObject {
     world.pushMatrix();
     world.translate(loc.x, loc.y, loc.z);
     world.fill(white, lives);
-    world.stroke(100);
+    world.stroke(white);
     world.box(size);
     world.popMatrix();
     lives--;
