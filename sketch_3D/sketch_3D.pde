@@ -94,14 +94,14 @@ void setup(){
 void draw(){
   world.beginDraw();
   world.textureMode(NORMAL);
-  world.background(0);
+  world.background(lightblue);
   world.pointLight(255, 255, 255, eyex, eyey, eyez);
   world.camera(eyex, eyey, eyez, focusx, focusy, focusz, upx, upy, upz);
   
   move();
   drawAxis();
   drawFloor(-2000, 2000, height, gridSize); //floor
-  drawFloor(-2000, 2000, height-gridSize*4, gridSize); //ceiling
+  //drawFloor(-2000, 2000, height-gridSize*4, gridSize); //ceiling
   drawMap();
   
   int i = 0;
