@@ -24,9 +24,9 @@ class GameObject {
   void show() {
     world.pushMatrix();
     world.translate(loc.x, loc.y, loc.z);
-    world.fill(white);
-    world.stroke(100);
-    world.box(size);
+    world.noFill();
+    world.stroke(white);
+    world.sphere(size);
     world.popMatrix();
   }
 }
