@@ -19,8 +19,8 @@ class Particle extends GameObject {
   void act() {
     if (loc.y >=height) {
       loc.y = height;
-    } else if (loc.y <=height-gridSize*3) {
-      loc.y = height-gridSize*3;
+    } else if (loc.y <=height-gridSize*5) {
+      loc.y = height-gridSize*5;
     } else {
       vel.add(gravity);
       loc.add(vel);
