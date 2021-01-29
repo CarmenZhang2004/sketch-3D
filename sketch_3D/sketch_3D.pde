@@ -8,8 +8,9 @@ color darkblue = #2B4876;
 color lightblue = #9BBCF0;
 
 //textures
-PImage mossyStone;
-PImage oakPlanks;
+PImage snow;
+PImage quartzT;
+PImage quartzS;
 
 //Map variables
 int gridSize;
@@ -42,9 +43,8 @@ int shadowOffset = 8;
 final int INTRO = 1;
 final int GAME = 2;
 final int GAMEOVER = 3;
-final int WIN = 4;
-final int PAUSE = 5;
-int mode = INTRO;
+final int PAUSE = 4;
+int mode = GAME;
 
 void setup(){ 
   textAlign(CENTER, CENTER);
@@ -57,9 +57,12 @@ void setup(){
   //create game object list
   objects = new ArrayList<GameObject>();
   
+  objects.add(new Enemy());
+  
   //load textures
-  mossyStone = loadImage("Mossy_Stone_Bricks.png");
-  oakPlanks = loadImage("Oak_Planks.png");
+  snow = loadImage("snow.png");
+  quartzT = loadImage("quartzTop.png");
+  quartzS = loadImage("quartzSide.png");
   world.textureMode(NORMAL);
   
   try{
@@ -95,7 +98,7 @@ void draw(){
   world.beginDraw();
   world.textureMode(NORMAL);
   world.background(lightblue);
-  world.pointLight(255, 255, 255, eyex, eyey, eyez);
+  world.pointLight(200, 200, 200, eyex, eyey, eyez);
   world.camera(eyex, eyey, eyez, focusx, focusy, focusz, upx, upy, upz);
   
   move();
@@ -132,8 +135,6 @@ void draw(){
     game();
   } else if (mode == GAMEOVER){
     gameover();
-  } else if (mode == WIN){
-    win();
   } else if (mode == PAUSE){
     pause();
   } else {
