@@ -3,14 +3,18 @@ void drawMap(){
     for (int y = 0; y < map.height; y++) {
       color c = map.get(x, y);
       if (c == dullBlue) {
-        texturedCube(x*gridSize-2000, height-gridSize, y*gridSize-2000, mossyStone, gridSize);
-        texturedCube(x*gridSize-2000, height-gridSize*2, y*gridSize-2000, mossyStone, gridSize);
-        texturedCube(x*gridSize-2000, height-gridSize*3, y*gridSize-2000, mossyStone, gridSize);
+        texturedCube(x*gridSize-2000, height-gridSize, y*gridSize-2000, quartzT, quartzS, quartzT, gridSize);
+        texturedCube(x*gridSize-2000, height-gridSize*2, y*gridSize-2000, quartzT, quartzS, quartzT, gridSize);
+        texturedCube(x*gridSize-2000, height-gridSize*3, y*gridSize-2000, quartzT, quartzS, quartzT, gridSize);
+        texturedCube(x*gridSize-2000, height-gridSize*4, y*gridSize-2000, quartzT, quartzS, quartzT, gridSize);
+        texturedCube(x*gridSize-2000, height-gridSize*5, y*gridSize-2000, quartzT, quartzS, quartzT, gridSize);
       }
       if (c == black) {
-        texturedCube(x*gridSize-2000, height-gridSize, y*gridSize-2000, oakPlanks, gridSize);
-        texturedCube(x*gridSize-2000, height-gridSize*2, y*gridSize-2000, oakPlanks, gridSize);
-        texturedCube(x*gridSize-2000, height-gridSize*3, y*gridSize-2000, oakPlanks, gridSize);
+        texturedCube(x*gridSize-2000, height-gridSize, y*gridSize-2000, snow, gridSize);
+        texturedCube(x*gridSize-2000, height-gridSize*2, y*gridSize-2000, snow, gridSize);
+        texturedCube(x*gridSize-2000, height-gridSize*3, y*gridSize-2000, snow, gridSize);
+        texturedCube(x*gridSize-2000, height-gridSize*4, y*gridSize-2000, snow, gridSize);
+        texturedCube(x*gridSize-2000, height-gridSize*5, y*gridSize-2000, snow, gridSize);
       }
     }
   }
@@ -32,7 +36,7 @@ void drawFloor(int floorStart, int floorEnd, int floorHeight, int floorSpacing){
   int x = floorStart;
   int z = floorStart;
   while(z < floorEnd){
-    texturedCube(x, floorHeight, z, oakPlanks, floorSpacing) ;
+    texturedCube(x, floorHeight, z, snow, floorSpacing) ;
     x = x + floorSpacing;
     if (x >= floorEnd){
       x = floorStart;
